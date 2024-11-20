@@ -1,0 +1,61 @@
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+      /* Container to hold the boxes */
+      .container {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping to the next line */
+        gap: 20px; /* Adds space between boxes */
+        padding: 20px;
+      }
+  
+      /* Each individual box */
+      .box {
+        width: calc(20% - 16px); /* 20% width minus half the gap for proper spacing */
+        height: 100px;
+        background-color: #4CAF50;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+  
+      /* Responsive behavior for smaller screens */
+      @media (max-width: 768px) {
+        .box {
+          width: calc(33.33% - 16px); /* 3 boxes per row on smaller screens */
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .box {
+          width: calc(50% - 16px); /* 2 boxes per row on very small screens */
+        }
+      }
+      .navbar {
+        background-color: transparent; /* Make the background transparent */
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed; /* Keep the navbar at the top */
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Ensure it's on top of other content */
+      }
+  
+      /* Navbar links */
+      .navbar a {
+        text-decoration: none;
+        color: #fff; /* Make the text color white for contrast */
+        padding: 10px 15px;
+        font-size: 18px;
+      }
