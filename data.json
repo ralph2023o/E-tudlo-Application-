@@ -1,0 +1,14 @@
+[
+    {
+      "title": "SerpentInsight Website",
+      "icon": "./images/read.png",
+      "description": "This contains our website with the Snake Library to know more about snakes",
+      "link": "./S-Library/index.html"
+    },
+    {
+      "title": "SerprentInsight Web-App",
+      "icon": "./images/app-development.png",
+      "description": "This contains our snake vicinity web map",
+      "link": "./Map/index1.html"
+    }
+  ]
