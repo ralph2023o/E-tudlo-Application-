@@ -1,0 +1,14 @@
+[
+    {
+      "title": "Applet 1 - Basic Events",
+      "icon": "https://cdn-icons-png.flaticon.com/512/2646/2646050.png",
+      "description": "This application contains the basic implementation of DOM events",
+      "link": "./Applet-1/index.html"
+    },
+    {
+      "title": "Applet 2 - Leaflet Map",
+      "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu4gT87YXiRIJcjmHwe0jcXir1-2gqcpBR0g&s",
+      "description": "This application contains the basic web map",
+      "link": "./Applet-2/index.html"
+    }
+  ]
