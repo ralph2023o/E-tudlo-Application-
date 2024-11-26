@@ -53,10 +53,10 @@
         <h3>Snake Monitor</h3>
     <div id="map"></div>
       
-    </div>
+   <!-- </div>
     <button onclick="openModal()">Open Snake Selector</button>
 
-<!-- Modal -->
+ Modal 
 <div id="snakeModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <div class="modal-header">
@@ -68,14 +68,14 @@
           <button class="close" onclick="closeModal()">×</button>
       </div>
       <div class="modal-body">
-          <!-- Snake Selector -->
+          <!-- Snake Selector 
           <div class="snake-selector">
               <label for="snake">Choose a Snake:</label>
               <select id="snake" onchange="displaySnakeDetails()">
                   <option value="">Select a snake</option>
               </select>
           </div>
-          <!-- Snake Details -->
+          <!-- Snake Details 
           <div id="snake-details" style="display: none;">
               <h3 id="snake-title"></h3>
               <p><strong>Status:</strong> <span id="snake-status"></span></p>
@@ -83,13 +83,20 @@
               <p><strong>More Info:</strong> <a id="snake-link" href="#" target="_blank">Click here</a></p>
               <img id="snake-icon" src="" alt="Snake Icon" width="200" />
           </div>
-          <!-- Map Container -->
+          <!-- Map Container 
           <div class="map-container">
               <div id="map"></div>
               <p><strong>Selected Location:</strong> <span id="location">Not selected</span></p>
           </div>
       </div>
   </div>
+  <div class="container">
+    <!-- Button trigger modal 
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoModal" style="margin-top: 2rem;">
+   Input Information
+ </button>-->
+
+ 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="script.js"></script>
