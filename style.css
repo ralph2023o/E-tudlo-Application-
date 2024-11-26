@@ -54,3 +54,56 @@
   height: 3rem;
   width: 3rem;
 }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTY8JsAXpfOURVZig3BvoIrBMjT-dl8iXYsg&s');
+}
+
+nav {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; 
+    width: 100%;
+}
+
+/* Style navbar links */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.background {
+    background-image: url('https://mrwallpaper.com/images/high/4k-minimalist-green-aesthetic-forest-4dy9rddb1uqxgb46.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-top: 60px; 
+}
+
+
+.content {
+    color: white;
+    max-width: 50%;
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    width: 50%; 
+    position: relative;
+    z-index: 5;
+}

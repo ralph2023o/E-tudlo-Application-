@@ -6,20 +6,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css"
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <title>E-tudlo (Snake Monitor)</title>
-    <style>
-        .applet-container{
-            margin-top: 1rem;
-            margin-left: 2rem;
-            width: 90%;
-        }
-
-        #map {
-            height: 600px;
-        }
-        
-    </style>
+    <title>SerpentInsight (Snake Monitor)</title>
 </head>
 <body>
   <nav class="navbar bg-body-tertiary fixed-top"> 
@@ -65,6 +54,44 @@
     <div id="map"></div>
       
     </div>
+    <button onclick="openModal()">Open Snake Selector</button>
+
+<!-- Modal -->
+<div id="snakeModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-header">
+        <h2>Select Snake and Location</h2>
+    </div>
+    <div class="modal">
+      <div class="modal-header">
+          <h2>Select Snake and Location</h2>
+          <button class="close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+          <!-- Snake Selector -->
+          <div class="snake-selector">
+              <label for="snake">Choose a Snake:</label>
+              <select id="snake" onchange="displaySnakeDetails()">
+                  <option value="">Select a snake</option>
+              </select>
+          </div>
+          <!-- Snake Details -->
+          <div id="snake-details" style="display: none;">
+              <h3 id="snake-title"></h3>
+              <p><strong>Status:</strong> <span id="snake-status"></span></p>
+              <p><strong>Description:</strong> <span id="snake-description"></span></p>
+              <p><strong>More Info:</strong> <a id="snake-link" href="#" target="_blank">Click here</a></p>
+              <img id="snake-icon" src="" alt="Snake Icon" width="200" />
+          </div>
+          <!-- Map Container -->
+          <div class="map-container">
+              <div id="map"></div>
+              <p><strong>Selected Location:</strong> <span id="location">Not selected</span></p>
+          </div>
+      </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 
