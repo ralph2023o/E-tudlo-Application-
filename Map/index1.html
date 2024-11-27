@@ -33,10 +33,10 @@
               <a class="nav-link" href="#">Report A Sighting</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Snake Library</a>
+                <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Snake Vicinity Map</a>
+                <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
               </li>
               
           
@@ -49,52 +49,39 @@
       </div>
     </div>
 </nav> 
+
+
     <div class="applet-container">
         <h3>Snake Monitor</h3>
     <div id="map"></div>
-      
-   <!-- </div>
-    <button onclick="openModal()">Open Snake Selector</button>
+    <button id="reportSightingBtn">Report a Snake Sighting</button>
 
- Modal 
-<div id="snakeModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div class="modal-header">
-        <h2>Select Snake and Location</h2>
+    <!-- Snake Library Cards -->
+    <div id="snakeLibrary" class="snake-library">
+        <!-- Snake cards will be dynamically populated here -->
     </div>
-    <div class="modal">
-      <div class="modal-header">
-          <h2>Select Snake and Location</h2>
-          <button class="close" onclick="closeModal()">×</button>
-      </div>
-      <div class="modal-body">
-          <!-- Snake Selector 
-          <div class="snake-selector">
-              <label for="snake">Choose a Snake:</label>
-              <select id="snake" onchange="displaySnakeDetails()">
-                  <option value="">Select a snake</option>
-              </select>
-          </div>
-          <!-- Snake Details 
-          <div id="snake-details" style="display: none;">
-              <h3 id="snake-title"></h3>
-              <p><strong>Status:</strong> <span id="snake-status"></span></p>
-              <p><strong>Description:</strong> <span id="snake-description"></span></p>
-              <p><strong>More Info:</strong> <a id="snake-link" href="#" target="_blank">Click here</a></p>
-              <img id="snake-icon" src="" alt="Snake Icon" width="200" />
-          </div>
-          <!-- Map Container 
-          <div class="map-container">
-              <div id="map"></div>
-              <p><strong>Selected Location:</strong> <span id="location">Not selected</span></p>
-          </div>
-      </div>
-  </div>
-  <div class="container">
-    <!-- Button trigger modal 
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoModal" style="margin-top: 2rem;">
-   Input Information
- </button>-->
+
+    <!-- Modal for reporting the sighting -->
+    <div id="snakeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select Snake</h2>
+            <div id="modalSnakeLibrary" class="snake-library">
+                <!-- Snake cards for the modal -->
+            </div>
+            <form id="sightingForm">
+                <label for="location">Location of Sighting:</label>
+                <input type="text" id="location" name="location" required>
+                <button type="submit">Submit Sighting</button>
+            </form>
+            <div id="selectedSnakeDetails">
+                <!-- Selected snake details will appear here -->
+            </div>
+        </div>
+    </div>
+    
+      
+ 
 
  
 

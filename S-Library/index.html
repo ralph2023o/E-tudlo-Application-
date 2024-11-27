@@ -7,47 +7,76 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Snake Library</title>
     <style>
-      .applet-flex-container {
-          display: flex;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-          align-items: center;
-          margin-top: 2rem;
-          margin-left: 10rem;
-          width: 80%;
-      }
+  .applet-flex-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align the items from the top */
+    margin-top: 2rem;
+    margin-left: 10rem;
+    width: 80%;
+}
 
-      .applet-flex-container > div {
-          margin-left: 0.8rem;
-      }
+.applet-flex-container > div {
+    margin-left: 0.8rem;
+}
 
-      .title {
-          margin-top: 1rem;
-          margin-left: 11rem;
-          justify-content: center;
-          flex-wrap: wrap;
-          align-items: center;
-      }
+.title {
+    margin-top: 1rem;
+    margin-left: 11rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
-      .applet-card {
-          flex: 1 1 20rem; 
-          max-width: 20rem;
-          width: 25rem;
-          margin-bottom: 1rem;
-          box-sizing: border-box;
-      }
-      
-      .applet-icon{
-        height: 5rem;
-        width: 5rem;
-      }
+.applet-card {
+    width: 20rem; /* Fixed width for all cards */
+    height: 20rem; /* Fixed height for all cards */
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center;
+    overflow: hidden; /* Prevent overflowing content outside the card */
+    border: 1px solid #ccc; /* Optional: Adds a border for visibility */
+}
 
+.applet-icon {
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: Shorten the title if too long */
+    white-space: nowrap;
+}
+
+.description {
+    flex: 1; /* Make description take available space */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    padding: 0.5rem; /* Add some padding for better appearance */
+    text-align: center;
+    max-height: 100%; /* Ensure description area doesn't exceed card height */
+}
+
+/* Optional: Control how the text overflows */
+.description {
+    overflow: auto; /* Allow scrolling if content overflows */
+    max-height: 10rem; /* Limit the height of the description area */
+    text-overflow: ellipsis;
+}
     </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">SerpentInsight</a>
+        <a class="navbar-brand" href="../index.html">SerpentInsight</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,10 +86,10 @@
                     <a class="nav-link" href="#">Report A Sighting</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Snake Library</a>
+                    <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Snake Vicinity Map</a>
+                    <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">

@@ -1,10 +1,11 @@
 class AppletCard {
-    constructor(title, icon, description, link, status = "Available") {
+    constructor(title, icon, description, link, status = "Available",sightings) {
         this.title = title;
         this.icon = icon;
         this.description = description;
         this.link = link;
         this.status = status;  // The status can be dynamic or default to "Available"
+        this.sightings = sightings;
     }
     createCard() {
         const cardDiv = document.createElement('div');
@@ -22,6 +23,7 @@ class AppletCard {
                                 <!-- Status displayed below the title -->
                                 <p class="card-status">${this.status}</p>
                                 <p class="card-text">${this.description}</p>
+                                <p class="card-sightings"># of Sightings: ${this.sightings}</p>
                             </div>
                         </div>
                     </div>
@@ -57,7 +59,7 @@ class AppletRenderer {
         data.forEach(applet => {
             // Now, the status comes from the applet data itself
             const status = applet.status || "Available";  // Fallback to "Available" if no status is provided
-            const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link, status);
+            const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link, status , applet.sightings);
             const cardElement = appletCard.createCard();
             this.container.appendChild(cardElement);
         });

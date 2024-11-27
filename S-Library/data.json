@@ -4,7 +4,8 @@
       "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/4727006/medium.jpg",
       "description": "is a snake species found from India through Southeast Asia to the Solomon Islands. It is completely aquatic and almost helpless on land",
       "link": "https://www.inaturalist.org/guide_taxa/1180770",
-      "status": "Non-venomous"
+      "status": "Non-venomous",
+      "sightings": "1000"
     },
     {
       "title": "Painted Bronzeback (Dendrelaphis pictus)",
@@ -152,7 +153,8 @@
         "icon": "",
         "description": "",
         "link": "",
-        "status": "Mildly venomous"
+        "status": "Mildly venomous",
+        "sighting": "1"
         
       },
       {
