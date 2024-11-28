@@ -1,39 +1,39 @@
 .applet-container {
     margin-top: 1rem;
     margin-left: 0;
-    width: 85rem;  /* Set fixed width of 50rem */
-    height: 40rem; /* Set fixed height of 20rem */
+    width: 85rem; 
+    height: 40rem; 
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
 }
 
 #applet-container1 {
-    width: 40%;  /* Set fixed width of 40% for applet menu */
-    height: 100%;  /* Ensure it fills the container's height */
+    width: 40%; 
+    height: 100%;  
     background-color: #f4f4f4;
     padding: 1rem;
     box-sizing: border-box;
-    overflow-y: auto;  /* Make applet container scrollable vertically */
-    flex-shrink: 0;  /* Prevent shrinking of the applet container */
+    overflow-y: auto;  
+    flex-shrink: 0; 
 }
 
 #map {
-    height: 100%;  /* Ensure map takes full height of the container */
-    width: 60%;  /* Set width of the map to 60% */
+    height: 100%;  
+    width: 60%; 
     background-color: lightblue;
-    flex-grow: 1;  /* Allow map to take the remaining space */
+    flex-grow: 1; 
 }
 
 .applet-flex-container {
     display: flex;
-    flex-direction: column;  /* Ensure vertical stacking of items */
-    justify-content: flex-start;  /* Align items to the top */
-    align-items: flex-start;  /* Align items to the left */
-    flex-wrap: nowrap;  /* Prevent wrapping of the flex items */
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    flex-wrap: nowrap; 
     height: 100%;
-    overflow-y: auto;  /* Allow vertical scrolling */
-    overflow-x: hidden;  /* Prevent horizontal scrolling */
+    overflow-y: auto; 
+    overflow-x: hidden;  
 }
 
 .title {

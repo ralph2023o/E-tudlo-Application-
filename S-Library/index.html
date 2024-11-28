@@ -11,7 +11,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    align-items: flex-start; /* Align the items from the top */
+    align-items: flex-start; 
     margin-top: 2rem;
     margin-left: 10rem;
     width: 80%;
@@ -30,16 +30,16 @@
 }
 
 .applet-card {
-    width: 200rem; /* Fixed width for all cards */
-    height: 20rem; /* Fixed height for all cards */
+    width: 200rem;
+    height: 20rem; 
     margin-bottom: 1rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align items to the top */
+    justify-content: flex-start; 
     align-items: center;
-    overflow: hidden; /* Prevent overflowing content outside the card */
-    border: 1px solid #ccc; /* Optional: Adds a border for visibility */
+    overflow: hidden; 
+    border: 1px solid #ccc; 
 }
 
 .applet-icon {
@@ -53,22 +53,22 @@
     text-align: center;
     margin-bottom: 1rem;
     overflow: hidden;
-    text-overflow: ellipsis; /* Optional: Shorten the title if too long */
+    text-overflow: ellipsis; 
     white-space: nowrap;
 }
 
 .description {
-    flex: 1; /* Make description take available space */
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-    padding: 0.5rem; /* Add some padding for better appearance */
+    flex: 1;
+    overflow-y: auto; 
+    padding: 0.5rem; 
     text-align: center;
-    max-height: 100%; /* Ensure description area doesn't exceed card height */
+    max-height: 100%; 
 }
 
-/* Optional: Control how the text overflows */
+
 .description {
-    overflow: auto; /* Allow scrolling if content overflows */
-    max-height: 10rem; /* Limit the height of the description area */
+    overflow: auto; 
+    max-height: 10rem;
     text-overflow: ellipsis;
 }
     </style>

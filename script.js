@@ -41,30 +41,30 @@ class AppletRenderer {
             .then(response => response.json())
             .then(data => {
                 this.appletData = data;
-                this.filteredData = data;  // No filtering needed
-                this.renderApplets(this.filteredData);  // Render all applets
+                this.filteredData = data;  
+                this.renderApplets(this.filteredData); 
             })
             .catch(error => console.error('Error loading applet data:', error));
     }
 
     renderApplets(data) {
-        this.container.innerHTML = ''; // Clear the container before appending new content
+        this.container.innerHTML = ''; 
         data.forEach(applet => {
             const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link);
             const cardElement = appletCard.createCard();
             this.container.appendChild(cardElement);
         });
-        this.initializeTooltips(); // Initialize tooltips if any
+        this.initializeTooltips(); 
     }
 
     initializeTooltips() {
         const tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach(tooltipTriggerEl => {
-            new bootstrap.Tooltip(tooltipTriggerEl); // Initialize Bootstrap tooltips
+            new bootstrap.Tooltip(tooltipTriggerEl); 
         });
     }
 }
 
-// Initialize the AppletRenderer and fetch applet data
+
 const appletRenderer = new AppletRenderer('applet-container');
 appletRenderer.fetchAppletData('data.json');

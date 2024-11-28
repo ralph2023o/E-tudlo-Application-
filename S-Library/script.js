@@ -4,7 +4,7 @@ class AppletCard {
         this.icon = icon;
         this.description = description;
         this.link = link;
-        this.status = status;  // The status can be dynamic or default to "Available"
+        this.status = status;  
         this.sightings = sightings;
     }
     createCard() {
@@ -57,8 +57,8 @@ class AppletRenderer {
     renderApplets(data) {
         this.container.innerHTML = '';
         data.forEach(applet => {
-            // Now, the status comes from the applet data itself
-            const status = applet.status || "Available";  // Fallback to "Available" if no status is provided
+           
+            const status = applet.status || "Available";  
             const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link, status , applet.sightings);
             const cardElement = appletCard.createCard();
             this.container.appendChild(cardElement);
@@ -84,6 +84,6 @@ class AppletRenderer {
     }
 }
 
-// Initialize the renderer
+
 const appletRenderer = new AppletRenderer('applet-container', 'searchApplet');
 appletRenderer.fetchAppletData('data.json');
