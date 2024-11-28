@@ -1,13 +1,12 @@
 class AppletCard {
-    constructor(title, icon, description, link, status = "Available", sightings, lat, lng) {
+    constructor(title, icon, description, link, status = "Available", sightings, locations) {
         this.title = title;
         this.icon = icon;
         this.description = description;
         this.link = link;
         this.status = status;
         this.sightings = sightings;
-        this.lat = lat;  // Store latitude for the marker
-        this.lng = lng;  // Store longitude for the marker
+        this.locations = locations;  // Array of {lat, lng} objects
     }
 
     createCard(map) {
@@ -15,14 +14,14 @@ class AppletCard {
         cardDiv.className = 'card applet-card';
         cardDiv.innerHTML = `
             <div class="card" data-bs-toggle="tooltip" title="${this.description}">
-                <a href="${this.link}" style="text-decoration: none; color: inherit;">
+                <a href="${this.link}" style="text-decoration: none; color: inherit;" class="applet-link">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4">
                                 <img src="${this.icon}" class="applet-icon rounded float-start">
                             </div>
                             <div class="col-8">
-                                <h5 class="card-title">${this.title}</h5>
+                                <p class="card-title">${this.title}<p>
                                 <p class="card-status">${this.status}</p>
                                 <p class="card-text">${this.description}</p>
                                 <p class="card-sightings"># of Sightings: ${this.sightings}</p>
@@ -33,21 +32,36 @@ class AppletCard {
             </div>
         `;
 
-        cardDiv.addEventListener('click', () => {
-            // When the applet card is clicked, add/update the marker on the map
-            map.clearMarkers();  // Clear existing markers
-            map.addMarker(this.lat, this.lng, this.title, this.icon);  // Add new marker
+        cardDiv.addEventListener('click', (event) => {
+            event.preventDefault();  // Prevent the link from being followed
+
+            // Clear any existing markers on the map
+            map.clearMarkers();
+
+            // Create an array to hold the lat/lng of all the locations
+            const latLngs = [];
+
+            // Loop through locations and add all markers
+            this.locations.forEach(location => {
+                map.addMarker(location.lat, location.lng, this.title, this.icon);
+                latLngs.push([location.lat, location.lng]);  // Add each location to latLngs
+            });
+
+            // If there are locations, auto-zoom to fit all the markers
+            if (latLngs.length > 0) {
+                const bounds = L.latLngBounds(latLngs);  // Create a LatLngBounds from all locations
+                map.map.fitBounds(bounds);  // Auto-zoom and center map to fit bounds
+            }
         });
 
         return cardDiv;
     }
 }
-
 class LeafletMap {
     constructor(containerId, center, zoom) {
         this.map = L.map(containerId).setView(center, zoom);
         this.initTileLayer();
-        this.markers = [];  // Store markers for later removal
+        this.markers = [];
     }
 
     initTileLayer() {
@@ -66,15 +80,20 @@ class LeafletMap {
             </div>
         `;
         marker.bindPopup(popupContent);
-        this.markers.push(marker);  // Save the marker to the array
+        this.markers.push(marker);
     }
 
     clearMarkers() {
-        // Remove all markers from the map
         this.markers.forEach(marker => {
             this.map.removeLayer(marker);
         });
-        this.markers = [];  // Clear the markers array
+        this.markers = [];
+    }
+
+    updateMarkers(lat, lng, title, icon) {
+        this.clearMarkers();
+        this.addMarker(lat, lng, title, icon);
+        this.map.setView([lat, lng], 15);
     }
 
     loadMarkersFromJson(url) {
@@ -113,18 +132,17 @@ class AppletRenderer {
     renderApplets(data) {
         this.container.innerHTML = '';
         data.forEach(applet => {
-            const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link, applet.status, applet.sightings, applet.lat, applet.lng);
+            const appletCard = new AppletCard(
+                applet.title, 
+                applet.icon, 
+                applet.description, 
+                applet.link, 
+                applet.status, 
+                applet.sightings, 
+                applet.locations // Pass the locations array here
+            );
             const cardElement = appletCard.createCard(this.map);
             this.container.appendChild(cardElement);
-        });
-
-        this.initializeTooltips();
-    }
-
-    initializeTooltips() {
-        const tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.forEach(tooltipTriggerEl => {
-            new bootstrap.Tooltip(tooltipTriggerEl);
         });
     }
 
@@ -140,8 +158,10 @@ class AppletRenderer {
 
 // Initialize the map
 const myMap = new LeafletMap('map', [8.360004, 124.868419], 15);
+
+// Optionally load markers from a JSON file
 myMap.loadMarkersFromJson('yes.json');
 
-// Initialize the renderer
+// Initialize AppletRenderer and fetch data
 const appletRenderer = new AppletRenderer('applet-container1', 'searchApplet', myMap);
 appletRenderer.fetchAppletData('data.json');
