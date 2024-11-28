@@ -32,16 +32,17 @@ class AppletCard {
             </div>
         `;
 
+        // Handle the click event for each applet
         cardDiv.addEventListener('click', (event) => {
             event.preventDefault();  // Prevent the link from being followed
 
-            // Clear any existing markers on the map
-            map.clearMarkers();
+            // Clear previous markers related to this applet
+            map.clearAppletMarkers();
 
             // Create an array to hold the lat/lng of all the locations
             const latLngs = [];
 
-            // Loop through locations and add all markers
+            // Loop through locations and add all markers for this applet
             this.locations.forEach(location => {
                 map.addMarker(location.lat, location.lng, this.title, this.icon);
                 latLngs.push([location.lat, location.lng]);  // Add each location to latLngs
@@ -61,7 +62,8 @@ class LeafletMap {
     constructor(containerId, center, zoom) {
         this.map = L.map(containerId).setView(center, zoom);
         this.initTileLayer();
-        this.markers = [];
+        this.markers = [];  // All markers
+        this.appletMarkers = [];  // Markers for the current applet
     }
 
     initTileLayer() {
@@ -80,18 +82,19 @@ class LeafletMap {
             </div>
         `;
         marker.bindPopup(popupContent);
-        this.markers.push(marker);
+        this.appletMarkers.push(marker);  // Keep track of markers for this applet
     }
 
-    clearMarkers() {
-        this.markers.forEach(marker => {
+    clearAppletMarkers() {
+        // Remove only the markers related to the current applet
+        this.appletMarkers.forEach(marker => {
             this.map.removeLayer(marker);
         });
-        this.markers = [];
+        this.appletMarkers = [];  // Reset the applet markers
     }
 
     updateMarkers(lat, lng, title, icon) {
-        this.clearMarkers();
+        this.clearAppletMarkers();
         this.addMarker(lat, lng, title, icon);
         this.map.setView([lat, lng], 15);
     }
@@ -106,7 +109,8 @@ class LeafletMap {
             })
             .catch(error => console.error('Error loading markers:', error));
     }
-}
+} 
+
 
 class AppletRenderer {
     constructor(containerId, searchInputId, map) {
@@ -160,7 +164,7 @@ class AppletRenderer {
 const myMap = new LeafletMap('map', [8.360004, 124.868419], 15);
 
 // Optionally load markers from a JSON file
-myMap.loadMarkersFromJson('yes.json');
+myMap.loadMarkersFromJson('data.json');
 
 // Initialize AppletRenderer and fetch data
 const appletRenderer = new AppletRenderer('applet-container1', 'searchApplet', myMap);
