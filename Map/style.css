@@ -1,56 +1,39 @@
 .applet-container {
     margin-top: 1rem;
     margin-left: 0;
-    width: 100%;
+    width: 85rem;  /* Set fixed width of 50rem */
+    height: 40rem; /* Set fixed height of 20rem */
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
 }
 
 #applet-container1 {
-    width: 20%;
-    height: 350px;
+    width: 40%;  /* Set fixed width of 40% for applet menu */
+    height: 100%;  /* Ensure it fills the container's height */
     background-color: #f4f4f4;
     padding: 1rem;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: auto;  /* Make applet container scrollable vertically */
+    flex-shrink: 0;  /* Prevent shrinking of the applet container */
 }
 
 #map {
-    height: 400px;
-    width: 80%;
-    flex: 1;
+    height: 100%;  /* Ensure map takes full height of the container */
+    width: 60%;  /* Set width of the map to 60% */
     background-color: lightblue;
+    flex-grow: 1;  /* Allow map to take the remaining space */
 }
 
 .applet-flex-container {
     display: flex;
-    flex-direction: column;  /* Ensure vertical stacking */
+    flex-direction: column;  /* Ensure vertical stacking of items */
     justify-content: flex-start;  /* Align items to the top */
     align-items: flex-start;  /* Align items to the left */
     flex-wrap: nowrap;  /* Prevent wrapping of the flex items */
     height: 100%;
-    overflow-y: auto;  /* Only allow vertical scrolling */
+    overflow-y: auto;  /* Allow vertical scrolling */
     overflow-x: hidden;  /* Prevent horizontal scrolling */
-}
-
-.applet-card {
-    width: 100%;  /* Ensure cards take full width */
-    height: auto;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-    border: 1px solid #ccc;
-}
-
-.applet-icon {
-    height: 5rem;
-    width: 5rem;
-    margin-bottom: 1rem;
 }
 
 .title {
@@ -61,17 +44,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-.description {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0.5rem;
-    text-align: center;
-    max-height: 100%;
-}
-
-.description {
-    overflow: auto;
-    max-height: 10rem;
-    text-overflow: ellipsis;
+.applet-icon {
+    height: 8rem;
+    width: 8rem;
+    margin-bottom: 1rem;
 }
