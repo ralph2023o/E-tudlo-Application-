@@ -1,8 +1,53 @@
-class LeafletMap {
+class AppletCard {
+    constructor(title, icon, description, link, status = "Available", sightings, lat, lng) {
+        this.title = title;
+        this.icon = icon;
+        this.description = description;
+        this.link = link;
+        this.status = status;
+        this.sightings = sightings;
+        this.lat = lat;  // Store latitude for the marker
+        this.lng = lng;  // Store longitude for the marker
+    }
 
+    createCard(map) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card applet-card';
+        cardDiv.innerHTML = `
+            <div class="card" data-bs-toggle="tooltip" title="${this.description}">
+                <a href="${this.link}" style="text-decoration: none; color: inherit;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="${this.icon}" class="applet-icon rounded float-start">
+                            </div>
+                            <div class="col-8">
+                                <h5 class="card-title">${this.title}</h5>
+                                <p class="card-status">${this.status}</p>
+                                <p class="card-text">${this.description}</p>
+                                <p class="card-sightings"># of Sightings: ${this.sightings}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+
+        cardDiv.addEventListener('click', () => {
+            // When the applet card is clicked, add/update the marker on the map
+            map.clearMarkers();  // Clear existing markers
+            map.addMarker(this.lat, this.lng, this.title, this.icon);  // Add new marker
+        });
+
+        return cardDiv;
+    }
+}
+
+class LeafletMap {
     constructor(containerId, center, zoom) {
         this.map = L.map(containerId).setView(center, zoom);
         this.initTileLayer();
+        this.markers = [];  // Store markers for later removal
     }
 
     initTileLayer() {
@@ -13,23 +58,23 @@ class LeafletMap {
     }
 
     addMarker(lat, lng, message, imageUrl) {
-        const customIcon = L.icon({
-            iconUrl: 'download.jpg', // Path to your custom marker image
-            iconSize: [32, 32], // Size of the icon
-            iconAnchor: [16, 32], 
-            popupAnchor: [0, -32]
-        });
-
-        const marker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
-
+        const marker = L.marker([lat, lng]).addTo(this.map);
         const popupContent = `
             <div>
                 <img src="${imageUrl}" alt="Popup Image" style="width: 100%; max-width: 200px; height: auto;"/>
                 <p>${message}</p>
             </div>
         `;
-        
         marker.bindPopup(popupContent);
+        this.markers.push(marker);  // Save the marker to the array
+    }
+
+    clearMarkers() {
+        // Remove all markers from the map
+        this.markers.forEach(marker => {
+            this.map.removeLayer(marker);
+        });
+        this.markers = [];  // Clear the markers array
     }
 
     loadMarkersFromJson(url) {
@@ -37,7 +82,6 @@ class LeafletMap {
             .then(response => response.json())
             .then(data => {
                 data.forEach(marker => {
-                    
                     this.addMarker(marker.latitude, marker.longitude, marker.message, marker.imageUrl);
                 });
             })
@@ -45,115 +89,59 @@ class LeafletMap {
     }
 }
 
-const myMap = new LeafletMap('map', [8.360004, 124.868419], 12);
+class AppletRenderer {
+    constructor(containerId, searchInputId, map) {
+        this.container = document.getElementById(containerId);
+        this.searchInput = document.getElementById(searchInputId);
+        this.appletData = [];
+        this.filteredData = [];
+        this.map = map;
+        this.searchInput.addEventListener('input', () => this.filterApplets());
+    }
+
+    fetchAppletData(url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                this.appletData = data;
+                this.filteredData = data;
+                this.renderApplets(this.filteredData);
+            })
+            .catch(error => console.error('Error loading applet data:', error));
+    }
+
+    renderApplets(data) {
+        this.container.innerHTML = '';
+        data.forEach(applet => {
+            const appletCard = new AppletCard(applet.title, applet.icon, applet.description, applet.link, applet.status, applet.sightings, applet.lat, applet.lng);
+            const cardElement = appletCard.createCard(this.map);
+            this.container.appendChild(cardElement);
+        });
+
+        this.initializeTooltips();
+    }
+
+    initializeTooltips() {
+        const tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(tooltipTriggerEl => {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    }
+
+    filterApplets() {
+        const query = this.searchInput.value.toLowerCase();
+        this.filteredData = this.appletData.filter(applet =>
+            applet.title.toLowerCase().includes(query) ||
+            applet.description.toLowerCase().includes(query)
+        );
+        this.renderApplets(this.filteredData);
+    }
+}
+
+// Initialize the map
+const myMap = new LeafletMap('map', [8.360004, 124.868419], 15);
 myMap.loadMarkersFromJson('yes.json');
 
-let snakeData = []; // Will store the snake data after fetching
-
-let selectedSnake = null; // Store the selected snake object
-
-// Select DOM elements
-const reportSightingBtn = document.getElementById('reportSightingBtn');
-const snakeLibrary = document.getElementById('snakeLibrary');
-const snakeModal = document.getElementById('snakeModal');
-const closeModalBtn = document.querySelector('.close');
-const modalSnakeLibrary = document.getElementById('modalSnakeLibrary');
-const sightingForm = document.getElementById('sightingForm');
-const selectedSnakeDetails = document.getElementById('selectedSnakeDetails');
-
-// Fetch snake data from data.json file
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        snakeData = data.snakes; // Assuming data.json contains a "snakes" key
-        renderSnakeLibrary(); // Render the snake library once data is fetched
-    })
-    .catch(error => console.log('Error loading snake data:', error));
-
-// Function to render snake cards in the main library
-function renderSnakeLibrary() {
-    snakeLibrary.innerHTML = ''; // Clear previous snake cards
-
-    snakeData.forEach(snake => {
-        const snakeCard = document.createElement('div');
-        snakeCard.classList.add('snake-card');
-        snakeCard.innerHTML = `
-            <img src="${snake.icon}" alt="${snake.title}">
-            <p>${snake.title}</p>
-        `;
-        snakeCard.addEventListener('click', () => openModal(snake));
-        snakeLibrary.appendChild(snakeCard);
-    });
-}
-
-// Function to open the modal and display snake details
-function openModal(snake) {
-    selectedSnake = snake;  // Store selected snake
-    renderModalSnakeLibrary();  // Render the modal with snake options
-    snakeModal.style.display = 'block';  // Show modal
-
-    // Show selected snake details in the modal
-    selectedSnakeDetails.innerHTML = `
-        <h3>${snake.title}</h3>
-        <p>${snake.description}</p>
-        <p>Status: ${snake.status}</p>
-    `;
-}
-
-// Function to close the modal
-closeModalBtn.addEventListener('click', () => {
-    snakeModal.style.display = 'none';
-});
-
-// Function to render snakes in the modal for selection
-function renderModalSnakeLibrary() {
-    modalSnakeLibrary.innerHTML = ''; // Clear previous modal content
-
-    snakeData.forEach(snake => {
-        const snakeCard = document.createElement('div');
-        snakeCard.classList.add('snake-card');
-        snakeCard.innerHTML = `
-            <img src="${snake.icon}" alt="${snake.title}">
-            <p>${snake.title}</p>
-        `;
-        snakeCard.addEventListener('click', () => {
-            selectedSnake = snake;  // Set selected snake
-            selectedSnakeDetails.innerHTML = `
-                <h3>${snake.title}</h3>
-                <p>${snake.description}</p>
-                <p>Status: ${snake.status}</p>
-            `;
-        });
-        modalSnakeLibrary.appendChild(snakeCard);
-    });
-}
-
-// Handle form submission for reporting the sighting
-sightingForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!selectedSnake) {
-        alert('Please select a snake!');
-        return;
-    }
-
-    const location = document.getElementById('location').value;
-    if (!location) {
-        alert('Please provide a location.');
-        return;
-    }
-
-    // Log the sighting data (could be sent to a server or stored in localStorage)
-    console.log('Sighting Reported:', {
-        snake: selectedSnake,
-        location: location
-    });
-
-    // Reset form and close the modal
-    sightingForm.reset();
-    snakeModal.style.display = 'none';
-});
-
-// Initialize by opening the modal when the user wants to report a sighting
-reportSightingBtn.addEventListener('click', () => {
-    snakeModal.style.display = 'block'; // Open the modal
-});
+// Initialize the renderer
+const appletRenderer = new AppletRenderer('applet-container1', 'searchApplet', myMap);
+appletRenderer.fetchAppletData('data.json');

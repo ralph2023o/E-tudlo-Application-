@@ -1,0 +1,19 @@
+[
+    {
+      "title": "Marine File Snake (Acrochordus granulatus)",
+      "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/4727006/medium.jpg",
+      "description": "is a snake species found from India through Southeast Asia to the Solomon Islands. It is completely aquatic and almost helpless on land",
+      "status": "Non-venomous",
+      "sightings": "1000",
+      "lat":"8.377411",
+      "long":"24.864760"
+
+    },
+    {
+      "title": "Painted Bronzeback (Dendrelaphis pictus)",
+      "icon": "https://inaturalist-open-data.s3.amazonaws.com/photos/4837600/small.jpg",
+      "description": "is a species of snake found in Southeast Asia and India.",
+      "link": "https://www.inaturalist.org/guide_taxa/1180771",
+      "status": "Non-venomous"
+    }
+]

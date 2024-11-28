@@ -1,119 +1,77 @@
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
-    z-index: 1000; /* Modal sits above the overlay */ /* Your background image URL here */
-    background-size: cover; /* Cover the entire modal */
-    background-position: center; /* Center the image */
-    color: white; /* Text color for readability */
-    padding-left: 200px;
-}
-
-.modal-header {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.modal-body {
-    display: flex;
-    justify-content: space-between;
-}
-
-.snake-selector, .map-container {
-    width: 48%;
-}
-
-.applet-container{
+.applet-container {
     margin-top: 1rem;
-    margin-left: 30rem;
+    margin-left: 0;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+#applet-container1 {
+    width: 20%;
+    height: 350px;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 #map {
-    height: 900px;
-    width: 900px;
+    height: 400px;
+    width: 80%;
+    flex: 1;
+    background-color: lightblue;
 }
 
-
-.close {
-    cursor: pointer;
-    font-size: 24px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-select {
-    width: 100%;
-    padding: 8px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-nav {
-    background-color: transparent;
-    color: white;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10; 
-    width: 100%;
-}
-
-/* Style navbar links */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-    font-weight: bold;
-}
-
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
+.applet-flex-container {
+    display: flex;
+    flex-direction: column;  /* Ensure vertical stacking */
+    justify-content: flex-start;  /* Align items to the top */
+    align-items: flex-start;  /* Align items to the left */
+    flex-wrap: nowrap;  /* Prevent wrapping of the flex items */
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;  /* Only allow vertical scrolling */
+    overflow-x: hidden;  /* Prevent horizontal scrolling */
 }
 
-.modal-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    width: 50%;
-    position: relative;
+.applet-card {
+    width: 100%;  /* Ensure cards take full width */
+    height: auto;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #ccc;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
+.applet-icon {
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.description {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    text-align: center;
+    max-height: 100%;
+}
+
+.description {
+    overflow: auto;
+    max-height: 10rem;
+    text-overflow: ellipsis;
 }

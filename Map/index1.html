@@ -11,77 +11,39 @@
     <title>SerpentInsight (Snake Monitor)</title>
 </head>
 <body>
-  <nav class="navbar bg-body-tertiary fixed-top"> 
-    <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html"> <img src="../images/logo.png" alt="Logo" width="70" height="50" class="d-inline-block align-text-top">
-        E-tudlo
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Snake Monitor</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Report A Sighting</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
-              </li>
-              
-          
-           
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </div>
-</nav> 
-
-
-    <div class="applet-container">
-        <h3>Snake Monitor</h3>
-    <div id="map"></div>
-    <button id="reportSightingBtn">Report a Snake Sighting</button>
-
-    <!-- Snake Library Cards -->
-    <div id="snakeLibrary" class="snake-library">
-        <!-- Snake cards will be dynamically populated here -->
-    </div>
-
-    <!-- Modal for reporting the sighting -->
-    <div id="snakeModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Select Snake</h2>
-            <div id="modalSnakeLibrary" class="snake-library">
-                <!-- Snake cards for the modal -->
-            </div>
-            <form id="sightingForm">
-                <label for="location">Location of Sighting:</label>
-                <input type="text" id="location" name="location" required>
-                <button type="submit">Submit Sighting</button>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">SerpentInsight</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" id="searchApplet" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <div id="selectedSnakeDetails">
-                <!-- Selected snake details will appear here -->
-            </div>
         </div>
     </div>
-    
-      
+</nav>
+
+
+<div class="applet-container">
  
+  <div class="applet-flex-container" id="applet-container1"></div> 
+  <div id="map"></div>
+ 
+</div>
+
+   
 
  
 
