@@ -75,7 +75,7 @@ class LeafletMap {
     addMarker(lat, lng, message, imageUrl) {
           const customIcon = L.icon({
             iconUrl: imageUrl,  
-            iconSize: [50, 50], 
+            iconSize: [60, 60], 
             iconAnchor: [25, 50], 
             popupAnchor: [0, -50] 
         });
@@ -167,7 +167,7 @@ class AppletRenderer {
 }
 
 
-const myMap = new LeafletMap('map', [8.360004, 124.868419], 8);
+const myMap = new LeafletMap('map', [8.360004, 124.868419], 13);
 
 
 myMap.loadMarkersFromJson('data.json');

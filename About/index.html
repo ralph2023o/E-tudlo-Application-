@@ -5,106 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Snake Library</title>
     <style>
-      .about-me {
+.applet-flex-container {
     display: flex;
-    align-items: center; 
-    justify-content: flex-start; 
-    gap: 15px; 
-    position: relative;
-    margin-top: 7vh;
+    flex-wrap: wrap;         
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 2rem;
+    margin-left: 5rem;      
+    width: 90%;
+    gap: 2rem;               
+}
+.applet-card {
+    width: 25rem;          
+    height: 40rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;    
 }
 
-.about-me img {
-    width: 200px;  
-    height: 200px; 
-    border-radius: 50%; 
-    object-fit: cover; 
+.applet-icon {
+    width: 100%;          
+    height: 12rem;          
+    object-fit: cover;      
+    margin-bottom: 1rem;
 }
 
-.about-me .info {
-    max-width: 600px; 
+.title {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.description {
+    text-align: center;
+    overflow: hidden;
+    padding: 0.5rem;
+    max-height: 5rem;         
+    text-overflow: ellipsis; 
 }
 body {
-    background-image: url('https://mrwallpaper.com/images/high/4k-minimalist-green-aesthetic-forest-4dy9rddb1uqxgb46.jpg');
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    
-}
-h1{
-    color: aliceblue;
-}
-p{
-    color: aliceblue;
-}
-.container{
-    padding-left: 35rem;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTY8JsAXpfOURVZig3BvoIrBMjT-dl8iXYsg&s');
 }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg  fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">SerpentInsight</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../About/index.html">Meet The Team</a>
-                    </li>
-                </ul>
-            </div>
+  <nav class="navbar navbar-expand-lg  bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">SerpentInsight</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                 <li class="nav-item">
+                    <a class="nav-link" href="../S-Library/index.html">Snake Library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Map/index1.html">Snake Vicinity Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../About/index.html">Meet The Team</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" id="searchApplet" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-    </nav>
-    <div class="info">
-        <h1 style="margin-bottom: 0rem;"> </h1>
-          <div class="about-me">
-            <img src="../images/ab3.jpg" alt="Your Name">
-            <div class="info">
-                <h1 style="margin-bottom: 0rem;">Precelle Mae S. Nieze </h1>
-                <p>2nd Year BSIT</p>
-                <p>HUSTLER</p>
-              </div>
-            </div>  
-          
-    <div class="info">
-         <h1 style="margin-bottom: 0rem;"> </h1>
-          <div class="about-me">
-                    <img src="../images/ab4.jpg" alt="Your Name">
-             <div class="info">
-                <h1>Ahkisha Mikelle N. Kiunisala </h1>
-                <p>2nd Year BSIT</p>
-                <p>HIPSTER</p>
-            </div>
-      </div>  
-               
-      <div class="info">
-        <h1 > </h1>
-         <div class="about-me">
-                   <img src="../images/ab2.jpg" alt="Your Name">
-            <div class="info">
-                       <h1>Ralph Hope C. Ayo-on</h1>
-                       <p>2nd Year BSIT</p>
-                       <p>HACKER</p>
-                    
-           </div>
-     </div>  
-     </div>
-     
-     
-</body>
-<footer class="text-center mt-5" >
+    </div>
+</nav>
+    
+    
+    
+    
+  
+    <div class="applet-flex-container"  id="applet-container"></div>
+
+    
+  
+  <script src="script.js"></script>
+  <footer class="text-center mt-5">
     <div class="container">
         <div class="footer-links">
             <a href="https://www.facebook.com/serpentinsight" class="footer-link">
@@ -126,5 +119,10 @@ p{
         <p>&copy; 2024 SerpentInsight. All rights reserved.</p>
     </div>
 </footer>
+   
 
+
+
+
+</body>
 </html>
