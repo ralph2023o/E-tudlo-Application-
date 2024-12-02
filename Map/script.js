@@ -73,7 +73,14 @@ class LeafletMap {
     }
 
     addMarker(lat, lng, message, imageUrl) {
-        const marker = L.marker([lat, lng]).addTo(this.map);
+          const customIcon = L.icon({
+            iconUrl: imageUrl,  
+            iconSize: [50, 50], 
+            iconAnchor: [25, 50], 
+            popupAnchor: [0, -50] 
+        });
+        const marker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
+;
         const popupContent = `
             <div>
                 <img src="${imageUrl}" alt="Popup Image" style="width: 100%; max-width: 200px; height: auto;"/>
@@ -103,7 +110,7 @@ class LeafletMap {
             .then(response => response.json())
             .then(data => {
                 data.forEach(marker => {
-                    this.addMarker(marker.latitude, marker.longitude, marker.message, marker.imageUrl);
+                    this.addMarker(marker.latitude, marker.longitude, marker.message, marker.imageUrl, marker.customIcon);
                 });
             })
             .catch(error => console.error('Error loading markers:', error));
@@ -160,7 +167,7 @@ class AppletRenderer {
 }
 
 
-const myMap = new LeafletMap('map', [8.360004, 124.868419], 15);
+const myMap = new LeafletMap('map', [8.360004, 124.868419], 8);
 
 
 myMap.loadMarkersFromJson('data.json');
